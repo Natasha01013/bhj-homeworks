@@ -21,9 +21,9 @@
 //Повышенный уровень сложности #1 и #2
 document.getElementById('status').innerHTML = 'До окончания конкурса осталось: <span id="timer">59</span>';
 
-let deadline = 'June 30 2024 23:59:59 GMT+02:00'; //временная зона, до которой будет вестись отсчет
+let deadline = 'July 05 2024 23:59:59 GMT+02:00'; //дата, до которой будет вестись отсчет
 
-//высчитываем оставшееся время (разница между дедлайном и текущим времнем)
+//высчитываем оставшееся время (разница между дедлайном и текущим временем)
 function getTimeRemaining(endtime){  
   let t = Date.parse(endtime) - Date.parse(new Date());  
   let seconds = Math.floor( (t/1000) % 60 );  
