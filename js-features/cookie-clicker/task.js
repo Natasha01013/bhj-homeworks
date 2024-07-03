@@ -7,13 +7,14 @@ let time = new Date();
 class Menu {
   handleEvent(event){
     document.getElementById('clicker__counter').textContent = element;
+    element++;
 
     switch(event.type) {
       case 'mousedown':
-        cookie.width = '250';   //при нажатии на левую кнопку мыши размер увеличивается
+         cookie.width = '250';   //при нажатии на левую кнопку мыши размер увеличивается
         break;
       case 'mouseup':
-        element++;
+ 
         cookie.width = '200';   //при опускании кнопки мыши размер уменьшается
         break;
     }
