@@ -4,7 +4,7 @@ let dead = document.getElementById("dead");
 let lost = document.getElementById("lost");
 
 for (let i = 1; i < 10; i++) {
-	let hole = document.getElementById(`hole${index}`);
+	let hole = document.getElementById(`hole${i}`);
 
 
 	hole.onclick = function() {
