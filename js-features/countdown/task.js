@@ -4,7 +4,7 @@
 //let time = 59;
 
 //const secInterval = setInterval(() => {
-//    time--; // С каждой секундой уменьшаем время
+//   time--; // С каждой секундой уменьшаем время
 //
 //    if(time >= 0) {
 //       document.getElementById('timer').textContent = time;
@@ -16,45 +16,39 @@
 
 
 
+//Повышенный уровень сложности #1 и #2 
+document.getElementById('status').innerHTML = 'До окончания конкурса осталось: <span id="timer">00:00:00</span>';
 
+//на сколько запускаем таймер
+let count = 2;
 
-//Повышенный уровень сложности #1 и #2
-document.getElementById('status').innerHTML = 'До окончания конкурса осталось: <span id="timer">59</span>';
+function start() {
+    let startTime = new Date();
+    let stopTime = startTime.setHours(startTime.getHours() + count);
 
-let deadline = 'July 05 2024 23:59:59 GMT+02:00'; //дата, до которой будет вестись отсчет
+    const secInterval = setInterval(function() {
+        let now = new Date().getTime();
+        let countdown = stopTime - now;
 
-//высчитываем оставшееся время (разница между дедлайном и текущим временем)
-function getTimeRemaining(endtime){  
-  let t = Date.parse(endtime) - Date.parse(new Date());  
-  let seconds = Math.floor( (t/1000) % 60 );  
-  let minutes = Math.floor( (t/1000/60) % 60 );  
-  let hours = Math.floor( (t/(1000*60*60)) % 24 );  
-  let days = Math.floor( t/(1000*60*60*24) ); 
-  return {  
-   'total': t, 
-   'days': days,   
-   'hours': hours,  
-   'minutes': minutes,  
-   'seconds': seconds  
-  };  
+        //переводим миллисекунды в часы, минуты и секунды
+        let sec = Math.floor((countdown/1000) % 60 );  
+        let min = Math.floor((countdown/1000/60) % 60 );  
+        let hour = Math.floor((countdown/(1000*60*60)) % 24 );
+
+        //прибавляем 0 к сек, мин, час
+        sec = sec < 10 ? "0" + sec : sec;
+        min = min < 10 ? "0" + min : min;
+        hour = hour <10 ? "0" + hour : hour;
+    
+        document.getElementById('timer').innerHTML = hour + ":" + min + ":" + sec;
+ 
+        if (countdown <= 0) {
+            clearInterval(secInterval); // Останавливаем таймер, поскольку время истекло 
+            alert("Вы победили в конкурсе!");
+            location = "https://netology.ru/"; //по окончании перенаправляем на страницу нетологии
+        } 
+    }, 1000);
 }
 
-//функция будет запускать обратный отсчет, остановится, когда дойдет до 0 и перенаправит на др.страницу
-function initialClock(id, endtime) {
-    let clock = document.getElementById(id);
+start();
 
-    function updateClock(){
-        let t = getTimeRemaining(endtime);
-        clock.innerHTML = ('0' + t.hours).slice(-2) + ':' + ('0' + t.minutes).slice(-2) + ':' + ('0' + t.seconds).slice(-2);
-
-        if(t.total <= 0) {
-            clearInterval(timeinterval);
-            location = "https://docs.yandex.ru/docs/view?url=ya-disk%3A%2F%2F%2Fdisk%2F%D0%94%D0%BE%D0%B1%D1%80%D0%BE%20%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C.pdf&name=%D0%94%D0%BE%D0%B1%D1%80%D0%BE%20%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C.pdf&uid=61303182&nosw=1";
-        }
-    }
-
-    updateClock(); // запускаем функцию один раз, чтобы избежать задержки в 1 сек
-    let timeinterval = setInterval(updateClock, 1000); //затем запускаем таймер через 1 сек
-}
-
-initialClock('timer', deadline);
