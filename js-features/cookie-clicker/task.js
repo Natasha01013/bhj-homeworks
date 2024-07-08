@@ -11,17 +11,18 @@ class Menu {
 
     switch(event.type) {
       case 'mousedown':
-         cookie.width = '250';   //при нажатии на левую кнопку мыши размер увеличивается
+        cookie.width = '250';   //при нажатии на левую кнопку мыши размер увеличивается
         break;
       case 'mouseup':
- 
         cookie.width = '200';   //при опускании кнопки мыши размер уменьшается
         break;
+
+
     }
 
     let currentTime = new Date();
     document.getElementById('clicker__speed').textContent = (1000 / (currentTime - time)).toFixed(2);
-
+    time = currentTime;
   }
 }
 
