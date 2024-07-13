@@ -1,9 +1,12 @@
+//Домашнее задание к лекции «Объект события». 
+//Задача 2. Соло на клавиатуре
 class Game {
   constructor(container) {
     this.container = container;
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timerElement = container.querySelector('.status__time');
 
     this.reset();
 
@@ -25,6 +28,26 @@ class Game {
       При неправильном вводе символа - this.fail();
       DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
+    
+    //обработчик для ввода слова
+    document.addEventListener('keyup', (event) => { //срабатывает при отпускании клавиатуры
+          if (event.key.toLowerCase() === this.currentSymbol.textContent.toLowerCase()) {  
+              this.success();
+          } else {
+              this.fail();
+          }  
+    });  
+  }
+
+  //запуск таймера каждую секунду
+  timerStart() {
+    this.time = setInterval(() => {
+      if (this.timerElement.textContent <= 0) { //если таймер заканчивается, слово не засчитывается
+          this.fail();
+      } else {  
+          this.timerElement.textContent--
+      }
+    }, 1000);
   }
 
   success() {
@@ -54,8 +77,11 @@ class Game {
 
   setNewWord() {
     const word = this.getWord();
-
     this.renderWord(word);
+
+    this.timerElement.textContent = word.length; //длина таймера = длине букв в слове
+    clearInterval(this.time); //очищаем интервал каждый раз при появлении нового слова
+    this.timerStart(); //и запускаем таймер заново
   }
 
   getWord() {
