@@ -1,5 +1,5 @@
 //Домашнее задание к лекции «Объект события». 
-//1.1.Выпадающие списки
+//1.Выпадающие списки
 
 let btn = document.querySelector(".dropdown__value");
 let menu = Array.from(document.querySelectorAll(".dropdown__item"));
@@ -10,9 +10,9 @@ btn.addEventListener('click', () => {
 });
 
 menu.forEach(function (elem, index) {
-  elem.onclick = function () {
-  	list.classList.toggle("dropdown__list_active");	
-    btn.textContent = menu[index].textContent
-    return false;
-  };
+  	elem.onclick = function () {
+  		list.classList.toggle("dropdown__list_active");	
+    	btn.textContent = menu[index].textContent
+    	return false;
+  	};
 });
