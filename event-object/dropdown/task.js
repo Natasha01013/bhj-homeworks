@@ -10,9 +10,9 @@ btn.addEventListener('click', () => {
 });
 
 menu.forEach(function (elem, index) {
-  	elem.onclick = function () {
-  		list.classList.toggle("dropdown__list_active");	
-    	btn.textContent = menu[index].textContent
-    	return false;
-  	};
+	elem.onclick = function () {
+		list.classList.toggle("dropdown__list_active");	
+		btn.textContent = menu[index].textContent
+		return false;
+	};
 });
