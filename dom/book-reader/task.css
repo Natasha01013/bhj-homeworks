@@ -63,7 +63,7 @@ body {
   align-items: center;
 }
 
-.color {
+.color-text, .color-bg {
   width: 20px;
   height: 20px;
   display: inline-block;
