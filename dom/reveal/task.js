@@ -9,7 +9,9 @@ document.addEventListener('scroll', () => {
 		let elBottom = reveal[i].getBoundingClientRect().bottom;
 		
 		if (elTop < window.innerHeight && elBottom > 0) {
-			reveal[i].classList.toggle('reveal_active');
+			reveal[i].classList.add('reveal_active');
+		} else {
+			reveal[i].classList.remove('reveal_active');
 		}
 	}
 });
