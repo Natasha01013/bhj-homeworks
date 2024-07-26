@@ -1,10 +1,11 @@
 //Домашнее задание к лекции «DOM»
 //Задача 3. Онлайн-читалка
 
-const book = document.getElementById('book');
+/*const book = document.getElementById('book');
 const fontSize = document.querySelectorAll('.font-size');
 const colorText = document.querySelectorAll('.color-text')
 const colorBg = document.querySelectorAll('.color-bg')
+
 
 for (let i = 0; i < fontSize.length; i++) {
 		fontSize[i].addEventListener('click', function() {
@@ -80,4 +81,48 @@ for (let index = 0; index < colorBg.length; index++) {
 			}
 		event.preventDefault();
 		});
-}
+}*/
+
+//Альтернативное решение
+const book  = document.getElementById("book");
+const controlElements = document.querySelector(".book__controls");
+
+controlElements.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const { size, textColor, bgColor } = event.target.dataset;
+
+  const elementClassArray = event.target.classList;
+  const activeControl = event.target
+    .closest(".book__control")
+    .querySelectorAll("a");
+
+  activeControl.forEach((element) => {
+    element.classList.remove(elementClassArray[0] + "_active");
+  });
+
+  event.target.classList.add(elementClassArray[0] + "_active");
+
+  function removePreviousClassName(className) {
+    for (value of book.classList) {
+      if (value.includes(className)) {
+        book.classList.remove(value);
+      }
+    }
+  }
+
+  if (size || event.target.className === "font-size font-size_active") {
+    removePreviousClassName("book_fs-");
+    book.classList.add("book_fs-" + size);
+  }
+
+  if (textColor) {
+    removePreviousClassName("book_color-");
+    book.classList.add("book_color-" + textColor);
+  }
+
+  if (bgColor) {
+    removePreviousClassName("book_bg-");
+    book.classList.add("book_bg-" + bgColor);
+  }
+});
