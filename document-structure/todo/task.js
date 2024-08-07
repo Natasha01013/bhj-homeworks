@@ -12,7 +12,7 @@ todoForm.addEventListener('submit', function(event) {
 	addDiv.className = 'task';
 
 	const newTask = todoInput.value; //создаем новую задачу, значение которой берем из инпута
-	if (newTask === '') { //не будем создавать пустые задачи
+	if (newTask.trim() === '') { //не будем создавать пустые задачи
 	return;
 	}
 
