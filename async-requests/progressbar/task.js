@@ -7,7 +7,6 @@ const input = document.getElementById('file');
 
 form.onsubmit = function(e) {
     e.preventDefault();
-//    let input = this.elements.userfile;
     let file = input.files[0];
 
     let ajax = new XMLHttpRequest();
