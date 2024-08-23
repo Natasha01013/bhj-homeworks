@@ -24,7 +24,7 @@ form.onsubmit = function(e) {
     ajax.onload = function() {
         if (ajax.status >= 200 && ajax.status < 300) {
             console.log('Файл успешно загружен');
-            console.log(`Ошибка ${ajax.status}: ${ajax.statusText}`);
+            console.log(`${ajax.status}: ${ajax.statusText}`);
         } else {
             console.log('Не удалось загрузить файл');
             console.log(`Ошибка ${ajax.status}: ${ajax.statusText}`);
