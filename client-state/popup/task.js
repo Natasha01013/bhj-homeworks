@@ -6,9 +6,9 @@ const modal = document.querySelector('.modal__close');
 
 window.onload = () => {
 const getCookie = (name) => {
-    const pairs = document.cookie.split("; ");
-    const cookie = pairs.find(p => p.startsWith(name + '='));
-    return cookie;
+    let pairs = document.cookie;
+    let cookie = pairs.split(name + '=');
+    return cookie.pop(); 
 }
 
    if (getCookie('subscribe') !== 'closed') {
